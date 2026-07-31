@@ -82,14 +82,14 @@ const Header = () => {
           {/* Search: narrower width, taller, filter + search button */}
           <div className="hidden md:flex items-center flex-1 max-w-md ml-6">
             <div className="relative w-full">
-              <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
+              <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 z-10" />
               <input
                 type="text"
                 placeholder="Search roles, skills…"
-                className="w-full h-12 pl-11 pr-28 rounded-full bg-gray-100 border border-transparent text-sm text-gray-700 placeholder:text-gray-400 focus:outline-none focus:bg-white focus:border-gray-300 transition-all"
+                className="w-full h-12 pl-11 pr-40 rounded-full bg-gray-100 border border-transparent text-sm text-gray-700 placeholder:text-gray-400 focus:outline-none focus:bg-white focus:border-gray-300 transition-all"
               />
 
-              <div className="absolute right-2 top-1/2 -translate-y-1/2 flex items-center gap-2">
+              <div className="absolute right-2 top-1/2 -translate-y-1/2 flex items-center gap-2 z-20">
                 {/* Filter button with simple dropdown */}
                 <div className="relative">
                   <button
@@ -103,7 +103,7 @@ const Header = () => {
                   </button>
 
                   {filterOpen && (
-                    <div className="absolute right-0 mt-2 w-40 rounded-lg bg-white shadow-lg border border-gray-100">
+                    <div className="absolute right-0 mt-2 w-40 rounded-lg bg-white shadow-lg border border-gray-100 z-50">
                       <button onClick={() => { setSelectedFilter('jobs'); setFilterOpen(false); }} className="w-full text-left px-3 py-2 text-sm hover:bg-gray-50">Jobs</button>
                       <button onClick={() => { setSelectedFilter('talents'); setFilterOpen(false); }} className="w-full text-left px-3 py-2 text-sm hover:bg-gray-50">Talents</button>
                     </div>
