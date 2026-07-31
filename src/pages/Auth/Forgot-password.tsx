@@ -284,7 +284,7 @@ const ForgotPassword = () => {
 
             <CardFooter className="items-center justify-between gap-3 border-t border-border/60 px-6 py-4 text-xs text-muted-foreground">
               <div className="flex items-center gap-2">
-                <Link to="/signin" className="text-primary transition-colors hover:underline">
+                <Link to="/sign-in" className="text-primary transition-colors hover:underline">
                   Back to sign in
                 </Link>
               </div>
