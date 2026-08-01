@@ -1,17 +1,20 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { gsap } from 'gsap';
-import { Eye, EyeOff, ArrowRight} from 'lucide-react';
+import { Eye, EyeOff, ArrowRight } from 'lucide-react';
 import { Button } from '../../components/ui/button';
 import { Input } from '../../components/ui/input';
 import { Label } from '../../components/ui/label';
 import { Checkbox } from '../../components/ui/checkbox';
 import { Separator } from '../..//components/ui/separator';
 import Logo from '../..//components/Logo';
-import GoogleIcon from '../../assets/icons/google-icon.png'
-import GithubIcon from '../../assets/icons/github-icon.png'
+import GoogleIcon from '../../assets/icons/google-icon.png';
+import GithubIcon from '../../assets/icons/github-icon.png';
+import { useAuth } from '../../contexts/Authcontext';
+import { apiFetch, ApiError, AUTH_BASE } from '../../lib/api';
 // ─── Animation Variants ───────────────────────────────────────────────────────
 
 const containerVariants = {
@@ -110,7 +113,10 @@ const SignIn = () => {
   const [password, setPassword] = useState('');
   const [rememberMe, setRememberMe] = useState(false);
   const [isLoading, setIsLoading] = useState<'email' | 'google' | 'github' | null>(null);
+  const [formError, setFormError] = useState<string | null>(null);
 
+  const navigate = useNavigate();
+  const { setAuth } = useAuth();
   const orbRef = useRef<HTMLDivElement>(null);
 
   // GSAP subtle floating animation on the right-panel orb
@@ -132,17 +138,36 @@ const SignIn = () => {
 
   const handleEmailSignIn = async (e: React.FormEvent) => {
     e.preventDefault();
+    setFormError(null);
     setIsLoading('email');
-    // TODO: implement email/password sign in
-    await new Promise((r) => setTimeout(r, 1500));
-    setIsLoading(null);
+
+    try {
+      const data = await apiFetch<{ accessToken: string; user: any }>('/api/auth/login', {
+        method: 'POST',
+        body: JSON.stringify({ email, password, rememberMe }),
+      });
+
+      setAuth(data.accessToken, data.user);
+      navigate('/dashboard', { replace: true });
+    } catch (err) {
+      if (err instanceof ApiError && err.data?.requiresVerification) {
+        navigate(`/verify-email?email=${encodeURIComponent(err.data.email ?? email)}`);
+        return;
+      }
+
+      setFormError(
+        err instanceof ApiError
+          ? err.message
+          : 'Unable to sign in right now. Please try again.'
+      );
+    } finally {
+      setIsLoading(null);
+    }
   };
 
-  const handleOAuth = async (provider: 'google' | 'github') => {
+  const handleOAuth = (provider: 'google' | 'github') => {
     setIsLoading(provider);
-    // TODO: redirect to OAuth provider
-    await new Promise((r) => setTimeout(r, 1200));
-    setIsLoading(null);
+    window.location.href = `${AUTH_BASE}/${provider}`;
   };
 
   return (
@@ -185,6 +210,11 @@ const SignIn = () => {
           onSubmit={handleEmailSignIn}
           className="flex flex-col gap-4 mb-6"
         >
+          {formError ? (
+            <div className="rounded-xl border border-red-200 bg-red-50 px-3 py-2 text-xs text-red-700">
+              {formError}
+            </div>
+          ) : null}
           {/* Email */}
           <div className="space-y-1.5">
             <Label htmlFor="email" className="text-xs font-medium text-gray-800 uppercase tracking-wider">
@@ -331,7 +361,7 @@ const SignIn = () => {
         </motion.p>
 
         {/* Copyright */}
-        <motion.p variants={itemVariants} className="text-[11px] text-blue-700 mt-4">
+        <motion.p variants={itemVariants} className="text-[11px] text-gray-300 mt-4">
           © {new Date().getFullYear()} Tribe. All rights reserved.
         </motion.p>
       </motion.div>
