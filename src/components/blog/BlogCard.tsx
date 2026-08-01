@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
 import type { BlogPost } from './blog-posts';
-
 export type { BlogPost };
 
 type BlogCardProps = {
