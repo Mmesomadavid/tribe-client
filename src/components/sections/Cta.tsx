@@ -1,7 +1,7 @@
 import { Button } from "../ui/button";
 import Reveal from "../ui/reveal";
 
-const CTA = () => {
+const Cta = () => {
   return (
     <section className="bg-black px-6 py-36 text-white">
       <div className="container">
@@ -40,4 +40,4 @@ const CTA = () => {
   );
 };
 
-export default CTA;
+export default Cta;

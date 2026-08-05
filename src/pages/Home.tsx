@@ -5,7 +5,7 @@ import HowItWorks from "../components/sections/HowItWorks";
 import JobListings from "../components/sections/JobListing";
 import Testimonials from "../components/sections/Testimonials";
 import FAQ from "../components/sections/Faq";
-import CTA from "../components/sections/Cta";
+import Cta from "../components/sections/Cta";
 import Footer from "../components/sections/Footer";
 
 const Home = () => {
@@ -25,7 +25,7 @@ const Home = () => {
         <section className="bg-black py-20">
           <div className="container mx-auto px-4">
             <div className="overflow-hidden rounded-[36px]">
-              <CTA />
+              <Cta />
               <Footer />
             </div>
           </div>
