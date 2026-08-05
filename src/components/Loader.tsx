@@ -1,10 +1,10 @@
+// src/components/PageLoader.tsx
+import { Spinner } from "../components/ui/spinner"
 
-const Loader = () => {
+export default function Loader() {
   return (
-    <div>
-      
+    <div className="flex h-screen w-screen items-center justify-center bg-background">
+      <Spinner className="h-8 w-8 text-primary" />
     </div>
-  );
+  )
 }
-
-export default Loader;

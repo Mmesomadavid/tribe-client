@@ -148,7 +148,7 @@ const SignIn = () => {
       });
 
       setAuth(data.accessToken, data.user);
-      navigate('/dashboard', { replace: true });
+      navigate('/', { replace: true });
     } catch (err) {
       if (err instanceof ApiError && err.data?.requiresVerification) {
         navigate(`/verify-email?email=${encodeURIComponent(err.data.email ?? email)}`);

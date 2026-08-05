@@ -1,23 +1,40 @@
 import Header from "../components/sections/Header";
 import Hero from "../components/sections/Hero";
-import Footer from '../components/sections/Footer'
-import CTABanner from "../components/sections/Cta";
+import TrustedBy from "../components/sections/TrustedBy";
+import HiringCompanies from "../components/sections/HiringCompanies";
 import HowItWorks from "../components/sections/HowItWorks";
-import TalentSection from "../components/sections/TalentSection";
-import JobsSection from "../components/sections/JobsSection";
+import JobListings from "../components/sections/JobListing";
+import Testimonials from "../components/sections/Testimonials";
+import FAQ from "../components/sections/Faq";
+import CTA from "../components/sections/CTA";
+import Footer from "../components/sections/Footer";
 
-const Home = () => (
-  <div className="min-h-screen">
-    <Header />
-    <main>
-      <Hero />
-      <HowItWorks />
-      <JobsSection />
-      <TalentSection />
-      <CTABanner />
-    </main>
-    <Footer />
-  </div>
-);
- 
+const Home = () => {
+  return (
+    <div className="min-h-screen bg-background">
+      <Header />
+
+      <main>
+        <Hero />
+        <TrustedBy />
+        <HiringCompanies />
+        <HowItWorks />
+        <JobListings />
+        <Testimonials />
+        <FAQ />
+
+        {/* CTA + Footer */}
+        <section className="bg-black py-20">
+          <div className="container mx-auto px-4">
+            <div className="overflow-hidden rounded-[36px]">
+              <CTA />
+              <Footer />
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+  );
+};
+
 export default Home;

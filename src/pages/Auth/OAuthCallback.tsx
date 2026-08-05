@@ -20,7 +20,7 @@ export default function OAuthCallback() {
           headers: { Authorization: `Bearer ${token}` },
         });
         setAuth(token, user);
-        navigate('/dashboard');
+        navigate('/');
       } catch {
         navigate('/sign-up?error=oauth_failed');
       }

@@ -8,9 +8,9 @@ import {
 import type {ReactNode} from "react"
 import { apiFetch } from '../lib/api';
 
-type Role = 'talent' | 'hiring' | 'admin';
+export type Role = 'talent' | 'hiring' | 'admin';
 
-interface User {
+export interface User {
   _id: string;
   name: string;
   email: string;
@@ -24,6 +24,7 @@ interface AuthContextValue {
   user: User | null;
   accessToken: string | null;
   isLoading: boolean;
+  loading: boolean;
   isAuthenticated: boolean;
   setAuth: (accessToken: string, user?: User | null) => void;
   logout: () => Promise<void>;
@@ -87,6 +88,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         user,
         accessToken,
         isLoading,
+        loading: isLoading,
         isAuthenticated: !!accessToken,
         setAuth,
         logout,

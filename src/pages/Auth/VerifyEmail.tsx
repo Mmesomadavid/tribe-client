@@ -44,7 +44,7 @@ const VerifyEmail = () => {
         body: JSON.stringify({ email, otp }),
       });
       setAuth(data.accessToken, data.user);
-      navigate('/dashboard', { replace: true });
+      navigate('/', { replace: true });
     } catch (err) {
       setOtpError(err instanceof ApiError ? err.message : 'Verification failed. Please try again.');
     } finally {

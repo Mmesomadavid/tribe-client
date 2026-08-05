@@ -287,7 +287,7 @@ const SignUp = () => {
       });
       // Store access token however your app manages auth state (context, memory, etc.)
       localStorage.setItem('accessToken', data.accessToken);
-      window.location.href = '/dashboard';
+      window.location.href = '/';
     } catch (err) {
       setOtpError(err instanceof ApiError ? err.message : 'Verification failed. Please try again.');
     } finally {
