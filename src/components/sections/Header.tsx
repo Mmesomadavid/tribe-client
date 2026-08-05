@@ -21,7 +21,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "../../components/ui/dropdown-menu";
-
+import { Link } from "react-router-dom"
 import { Button } from "../../components/ui/button";
 import Logo from "../../components/Logo";
 
@@ -531,7 +531,7 @@ text-ink
 
 >
 
-Sign In
+<Link to="/sign-in">Sign In</Link>
 
 </button>
 
@@ -550,7 +550,7 @@ px-6
 
 >
 
-Get Started
+<Link to="/sign-up">Get Started</Link>
 
 </Button>
 
