@@ -3,6 +3,7 @@ import {
   Radar,
   MousePointerClick,
   Landmark,
+  Sparkle,
 } from "lucide-react";
 
 import { Badge } from "../../components/ui/badge";
@@ -76,7 +77,8 @@ const HowItWorks = () => {
               text-white/80
               "
             >
-              ✨ How It Works
+              <Sparkle size={12} />
+              How It Works
             </Badge>
 
 

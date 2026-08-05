@@ -145,7 +145,7 @@ const JobListings = () => {
             max-w-3xl
             text-lg
             leading-relaxed
-            text-muted
+            text-gray-500
             sm:text-xl
             "
           >
