@@ -1,4 +1,3 @@
-import { motion } from "framer-motion";
 import {
   Sparkle,
   CheckCircle2,
@@ -253,36 +252,24 @@ max-w-7xl
 
 >
 
-
 {/* OUTER ORBIT */}
 
-<motion.div
-
-animate={{
-rotate:360
-}}
-
-transition={{
-duration:120,
-repeat:Infinity,
-ease:"linear"
-}}
+<div
 
 className="
 absolute
 left-1/2
 top-1/2
-h-[780px]
-w-[780px]
+h-[800px]
+w-[800px]
 -translate-x-1/2
 -translate-y-1/2
 rounded-full
 border-2
-border-gray-300
+border-gray-200
 "
 
 />
-
 
 
 {/* MIDDLE ORBIT */}
@@ -302,7 +289,7 @@ border
 border-gray-300
 "
 
-/>
+ />
 
 
 
@@ -314,8 +301,8 @@ className="
 absolute
 left-1/2
 top-1/2
-h-[410px]
-w-[410px]
+h-[400px]
+w-[400px]
 -translate-x-1/2
 -translate-y-1/2
 rounded-full
@@ -323,8 +310,7 @@ border
 border-gray-300
 "
 
-/>
-
+ />
 
 
 {/* COMPANY LOGOS */}

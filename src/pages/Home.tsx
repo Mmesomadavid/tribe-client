@@ -1,6 +1,5 @@
 import Header from "../components/sections/Header";
 import Hero from "../components/sections/Hero";
-import TrustedBy from "../components/sections/TrustedBy";
 import HiringCompanies from "../components/sections/HiringCompanies";
 import HowItWorks from "../components/sections/HowItWorks";
 import JobListings from "../components/sections/JobListing";
@@ -16,7 +15,6 @@ const Home = () => {
 
       <main>
         <Hero />
-        <TrustedBy />
         <HiringCompanies />
         <HowItWorks />
         <JobListings />
