@@ -1,5 +1,5 @@
-import { Button } from "../../components/ui/button";
-import Reveal from "../../components/ui/reveal";
+import { Button } from "../ui/button";
+import Reveal from "../ui/reveal";
 
 const CTA = () => {
   return (

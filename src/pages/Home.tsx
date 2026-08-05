@@ -5,7 +5,7 @@ import HowItWorks from "../components/sections/HowItWorks";
 import JobListings from "../components/sections/JobListing";
 import Testimonials from "../components/sections/Testimonials";
 import FAQ from "../components/sections/Faq";
-import CTA from "../components/sections/CTA";
+import CTA from "../components/sections/Cta";
 import Footer from "../components/sections/Footer";
 
 const Home = () => {
