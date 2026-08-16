@@ -10,6 +10,7 @@ import { Label } from '../../components/ui/label';
 import Logo from '../../components/Logo';
 import { apiFetch, ApiError } from '../../lib/api';
 import { useAuth } from '../../contexts/Authcontext';
+import { postAuthPathFor } from '../../lib/routing';
 
 const Spinner = () => (
   <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24" fill="none">
@@ -44,7 +45,7 @@ const VerifyEmail = () => {
         body: JSON.stringify({ email, otp }),
       });
       setAuth(data.accessToken, data.user);
-      navigate('/', { replace: true });
+      navigate(postAuthPathFor(data.user), { replace: true });
     } catch (err) {
       setOtpError(err instanceof ApiError ? err.message : 'Verification failed. Please try again.');
     } finally {

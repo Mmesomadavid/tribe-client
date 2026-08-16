@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { gsap } from 'gsap';
 import { Eye, EyeOff, ArrowRight, ArrowLeft, BriefcaseBusiness, UserRound, Check } from 'lucide-react';
@@ -12,6 +13,8 @@ import Logo from '../../components/Logo';
 import GoogleIcon from '../../assets/icons/google-icon.png';
 import GithubIcon from '../../assets/icons/github-icon.png';
 import { apiFetch, AUTH_BASE, ApiError } from '../../lib/api';
+import { useAuth } from '../../contexts/Authcontext';
+import { postAuthPathFor } from '../../lib/routing';
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -199,6 +202,9 @@ const OAUTH_ERROR_MESSAGES: Record<string, string> = {
 // ─── Sign Up Page ─────────────────────────────────────────────────────────────
 
 const SignUp = () => {
+  const navigate = useNavigate();
+  const { setAuth } = useAuth();
+
   const [step, setStep] = useState<Step>('role');
   const [direction, setDirection] = useState(1);
   const [selectedRole, setSelectedRole] = useState<Role>(null);
@@ -281,13 +287,15 @@ const SignUp = () => {
     setOtpError(null);
     setIsLoading('otp');
     try {
-      const data = await apiFetch<{ accessToken: string }>('/api/auth/verify-otp', {
+      const data = await apiFetch<{ accessToken: string; user: any }>('/api/auth/verify-otp', {
         method: 'POST',
         body: JSON.stringify({ email, otp }),
       });
-      // Store access token however your app manages auth state (context, memory, etc.)
-      localStorage.setItem('accessToken', data.accessToken);
-      window.location.href = '/';
+      // Route through the same auth context SignIn uses, then send the
+      // user to onboarding (new accounts are never onboarded yet) rather
+      // than straight to the dashboard.
+      setAuth(data.accessToken, data.user);
+      navigate(postAuthPathFor(data.user), { replace: true });
     } catch (err) {
       setOtpError(err instanceof ApiError ? err.message : 'Verification failed. Please try again.');
     } finally {

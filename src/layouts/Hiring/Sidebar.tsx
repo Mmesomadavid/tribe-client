@@ -1,7 +1,7 @@
 // src/layouts/Sidebar.tsx
 import { NavLink } from "react-router-dom"
-import { cn } from "../lib/utils"
-import type { NavItem } from "../config/navigation"
+import { cn } from "../../lib/utils"
+import type { NavItem } from "../../config/navigation"
 
 export default function Sidebar({ navItems }: { navItems: NavItem[] }) {
   return (
